@@ -107,9 +107,6 @@ class PagesController extends AppController {
 
 		$items_data = $this->Item->basket_item_data($basket);
 
-		// debug($basket);
-		// die();
-
 		$this->set(compact('basket', 'items_data'));
 	}
 
