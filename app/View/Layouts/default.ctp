@@ -25,7 +25,10 @@
 		<div class='main-menu'>
 			<div class='container'>
 			<?php
-				echo $this->Html->image('theme/godzilla.kz-logo.png', array('class' => 'logo', 'alt' => 'Godzilla.kz быстрая доставка вкусных суши роолов и десертов в Астане'));
+				echo $this->Html->link(
+					$this->Html->image('theme/godzilla.kz-logo.png', array('class' => 'logo', 'alt' => 'Godzilla.kz быстрая доставка вкусных суши роолов и десертов в Астане')),
+					array('controller' => '/', 'action' => null),
+					array('escape' => false, 'class' => 'img-link'));
 
 				$menu_html = null;
 
