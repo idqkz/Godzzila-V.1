@@ -1,0 +1,253 @@
+/*
+
+init css is designed much like bootstrap 
+but instead of concentrating on tags and semantics
+it uses self descriptive classes which can be applied
+to any tag, so minimal number of tags can be used.
+Large number of self descriptive classes but being 
+self descriptive tags are much easier to remember
+
+*/
+
+/* reset */
+body, div, p, h1, h2, h3, input, label, ul, li, ol {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+/*
+	cursor reset 
+	text selector cursor should only be used for input fields
+*/
+p, div, ul, li, ol {
+	cursor: default;
+}
+
+input[type='submit'],
+a, .link, a * {
+	cursor: pointer;
+}
+a, .link, a * {
+	color: inherit;
+}
+
+/* 
+
+	text hierarchy
+
+	font-size specified for body and html tags only
+	rest of the sizes are cpecified in "rem" to avoid inheritance
+
+*/
+
+html {
+	font-size: 40px;
+	width: 100%;
+}
+
+body {
+	font-size: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+
+	position: relative;
+	height: 100%;
+	min-height: 100%;
+}
+
+.text-size-1 {
+	font-size: 1rem;
+}
+
+.text-size-2 {
+	font-size: .75rem;
+}
+
+.text-size-3 {
+	font-size: .5rem;
+}
+
+.text-size-4 {
+	font-size: .4rem;
+}
+
+.text-size-5 {
+	font-size: .35rem;
+}
+
+.text-size-6 {
+	font-size: .3rem;
+}
+
+
+/*
+
+	basic colors, for each theme red can be different
+	but there still might be a red color
+
+	TODO: may be it's better to describe similarly to bootstrap, by intended use?;
+
+*/
+
+.text-color-default {
+	color: #000;
+}
+
+.text-color-info {
+	color: #fff;
+}
+
+.text-color-warning {
+	color: #f00;
+}
+
+/*
+	margins 
+*/
+
+.margin-top-half {
+	margin-top: .25rem;
+}
+
+.margin-top {
+	margin-top: .5rem;
+}
+
+.margin-top-double {
+	margin-top: 1rem;
+}
+
+.margin-bottom-half {
+	margin-bottom: .25rem;
+}
+
+.margin-bottom {
+	margin-bottom: .5rem;
+}
+
+.margin-bottom-double {
+	margin-bottom: 1rem;
+}
+
+.margin-left-half {
+	margin-left: .25rem;
+}
+
+.margin-left {
+	margin-left: .5rem;
+}
+
+.margin-left-double {
+	margin-left: 1rem;
+}
+
+.margin-right-half {
+	margin-right: .25rem;
+}
+
+.margin-right {
+	margin-right: .5rem;
+}
+
+.margin-right-double {
+	margin-right: 1rem;
+}
+
+/*
+	buttons
+*/
+.btn {
+	text-decoration: none;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, .75);
+	font-size: .4rem;
+	padding: .125rem .25rem;
+	box-sizing: border-box;
+	border: none;
+	color: #fff;
+	text-transform: lowercase;
+	border-top: solid 1px rgba(255, 255, 255, .5);
+	border-bottom: solid 1px rgba(0, 0, 0, .5);
+	border-radius: 3px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.btn * {
+	cursor: pointer;
+}
+
+.btn:hover {
+
+}
+
+.btn.btn-danger {
+	background-color: rgba(255, 29, 37, .6);
+	transition: all .5s;
+}
+
+.btn.btn-danger:hover {
+	background-color: rgba(255, 29, 37, .9);
+}
+
+.btn.btn-success {
+	background-color: rgba(34, 175, 115, .6);
+	transition: all .5s;
+}
+
+.btn.btn-success:hover {
+	background-color: rgba(34, 175, 115, .9);
+}
+
+.btn.btn-primary {
+	background-color: rgba(63, 163, 239, .6);
+	transition: all .5s;
+}
+
+.btn.btn-primary:hover {
+	background-color: rgba(63, 163, 239, .9);
+}
+
+/*
+
+	колонки
+
+*/
+*[class*='col'] {
+	float: left;
+	position: relative;
+	margin: 0 -20px 0 0;
+	box-sizing: border-box;
+	padding-right: 30px;
+}
+.col-1 {
+	width: 10%;
+}
+.col-2 {
+	width: 20%;
+}
+.col-3 {
+	width: 30%;
+}
+.col-4 {
+	width: 40%;
+}
+.col-5 {
+	width: 50%;
+}
+.col-6 {
+	width: 60%;
+}
+.col-7 {
+	width: 70%;
+}
+.col-8 {
+	width: 80%;
+}
+.col-9 {
+	width: 90%;
+}
+.col-10 {
+	width: 100%;
+}

@@ -1,0 +1,489 @@
+body {
+	font-size: .5rem;
+	font-weight: 300;
+	background-color: rgb(50, 50, 50);
+	box-sizing: border-box;
+	padding-left: 5rem;
+	padding-bottom: 2rem;
+	font-family: sans-serif;
+}
+
+html {
+	font-size: 40px;
+}
+
+/*
+	формы
+*/
+form {
+	padding: 1rem;
+	box-sizing: border-box;
+	float: left;
+	max-width: 20rem;
+	min-width: 10rem;
+}
+
+form > div {
+	margin-bottom: .5em;
+	float: left;
+	width: 100%;
+}
+
+form > h2 {
+	float: left;
+	width: 100%;
+	margin-bottom: .5rem;
+	font-weight: 300;
+	color: rgb(100, 100, 100);
+}
+
+form label {
+	text-transform: lowercase;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+	outline: none;
+	box-shadow: 0 0 5px rgba(34, 175, 115, .5);
+}
+
+form textarea {
+	resize: vertical;
+}
+
+form textarea,
+form input[type='tel'],
+form input[type='email'],
+form input[type='number'],
+form input[type='password'],
+form input[type='text'] {
+	border: solid 1px rgb(200, 200, 200);
+	padding: .5em .75em;
+	font-size: inherit;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+form input[type='tel']:focus,
+form input[type='number']:focus,
+form textarea:focus,
+form input[type='password']:focus,
+form input[type='text']:focus {
+	border: solid 1px rgb(34, 175, 115);
+	outline: none;
+}
+
+form .input.select > label,
+form .input > label + div {
+	float: left;
+	width: 100%;
+	margin-bottom: .25rem;
+}
+
+form .input.select > .checkbox {
+	float: left;
+	width: 9rem;
+}
+
+form input[type='checkbox'] {
+	margin-right: .25rem;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearence: none;
+	width: .75rem;
+	height: .5rem;
+	border: solid 1px rgba(0, 0, 0, .25);
+	float: left;
+	box-sizing: border-box;
+	position: relative;
+	border-radius: .25rem;
+	cursor: pointer;
+	padding: 1px;
+	background-color: rgba(140, 140, 140, .25);
+	box-shadow: 0 1px 0px rgba(255, 255, 255, .95);
+}
+
+form input[type='checkbox']:focus {
+	outline: none;
+}
+
+form input[type='checkbox']:checked {
+	background-color: rgb(34, 175, 115);
+	border-width: 1px;
+}
+
+form input[type='checkbox']:after {
+	background-color: rgb(240, 140, 140);
+	content: '';
+	width: .4rem;
+	height: .4rem;
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	border-radius: 50%;
+	box-sizing: border-box;
+	border: solid 7px rgb(240, 240, 240);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+	transition: all .2s ease;
+}
+
+form input[type='checkbox']:checked:after {
+	background-color: rgb(34, 175, 115);
+	left: 11px;
+	transition: all .2s ease;
+}
+
+form select {
+	font-size: inherit;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	background: rgba(255, 255, 255, .65);
+}
+
+form .input-password {
+	position: relative;
+}
+
+form .input-password .link-primary {
+	float: right;
+}
+
+form .input-password.hidden {
+	display: none;
+}
+
+form .submit > .btn-danger {
+	float: right;
+}
+
+/*	поля прикрепления файлов */
+form input[type=file] {
+	display: none;
+}
+
+form .attach-file label {
+	border-bottom: dotted 1px;
+	cursor: pointer;
+	margin-bottom: .5rem;
+	display: inline-block;
+}
+
+.tags.form.wrapper {
+	width: 10rem;
+	float: left;
+}
+
+
+
+/*
+	header
+*/
+.header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color: #ddd;
+	width: 100%;
+	height: .75rem;
+	z-index: 500;
+	background-color: rgb(50, 50, 50);
+	padding-left: 5rem;
+	box-sizing: border-box;
+	/*border-bottom: solid 1px #000;*/
+	/*box-shadow: 0 1px 2px rgba(0, 0, 0, .25);*/
+}
+
+.header > .btn-danger {
+	height: 100%;
+	float: right;
+}
+
+.header #flashMessage {
+	float: left;
+	font-size: .3rem;
+	line-height: .75rem;
+}
+
+/*
+	меню
+*/
+
+.menu-main {
+	position: absolute;
+	z-index: 510;
+	left: 0px;
+	top: 0px;
+	height: 100%;
+	width: 5rem;
+	color: #ddd;
+	font-size: .3rem;
+	padding-top: .75rem;
+	font-weight: 300;
+}
+
+.menu-main .item {
+	float: left;
+	width: 100%;
+	border-top: solid 1px rgba(255, 255, 255, .25);
+	border-bottom: solid 1px rgba(0, 0, 0, .95);
+}
+
+.menu-main .item a {
+	text-decoration: none;
+	padding: .25rem .5rem;
+	display: block;
+	box-sizing: border-box;
+	transition:  color .3s;
+	transition: background-color .2s;
+	background-color: rgba(255, 255, 255, .05);
+}
+
+.menu-main .item.active a,
+.menu-main .item a:hover {
+	background-color: rgba(255, 255, 255, .75);
+	color: rgb(0, 0, 0);
+	transition: background-color .1s;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
+}
+
+
+.menu-main .item.sub-item a {
+	padding-left: 1rem;
+}
+
+.content {
+	background-image: url('../img/admin/tile-gray.png');
+	border: solid 1px #000;
+	position: relative;
+	top: .75rem;
+	float: left;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: .5rem .5rem 5rem;
+}
+
+/*
+	списки
+*/
+.list {
+	padding: 1rem;
+	box-sizing: border-box;
+	width: 100%;
+	float: left;
+}
+
+.list .row {
+	float: left;
+	width: 100%;
+	padding: 2px 5px;
+	box-sizing: border-box;
+}
+
+.list .sub-heading {
+	border-bottom: solid 1px rgba(0, 0, 0, .25);
+	font-size: 14px;
+	text-transform: uppercase;
+	margin-top: 5px;
+	float: left;
+	width: 100%;
+}
+
+.list .row > div:last-of-type {
+	text-align: right;
+}
+
+
+.list .row:hover {
+	background-color: rgba(34, 175, 115, .3);
+}
+
+.list.tags {
+	width: 10rem;
+}
+
+.table {
+	display: table;
+	width: 100%;
+}
+
+.table .row,
+.table h2 {
+	display: table-row;
+	margin-bottom: .5rem;
+	font-weight: 300;
+	color: rgb(100, 100, 100);
+}
+
+.list .table .item {
+	display: table-row;
+}
+
+.table .row .cell,
+.list .table .item > div {
+	display: table-cell;
+	padding-bottom: .125rem;
+	margin-bottom: .25rem;
+	border-bottom: dotted 1px rgba(0, 0, 0, .25);
+}
+
+.list .item > .edit {
+	text-align: right;
+}
+
+.images .item {
+	vertical-align: top;
+	margin-bottom: .5rem;
+	margin-right: .5rem;
+	float: left;
+}
+
+.images .item > a {
+	float: left;
+}
+
+.images img {
+	float: left;
+	margin-right: .125rem;
+}
+
+.list .item.new > div:first-of-type {
+	position: relative;
+}
+
+.list .item.new > div:first-of-type:after {
+	position: absolute;
+	top: 0px;
+	left: -35px;
+	content: 'new';
+	width: 30px;
+	height: 15px;
+	background-color: rgb(34, 175, 115);
+	text-align: center;
+	display: block;
+	font-size: .25rem;
+	line-height: 15px;
+	color: #fff;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+}
+
+/*
+	список новостей
+*/
+.news.list .item .title{
+	position: relative;
+}
+
+.news.list .item.active .title:after {
+	content: 'акция';
+	position: absolute;
+	top: 4px;
+	left: -41px;
+	font-size: .25rem;
+	border-radius: 2px;
+	background-color: rgba(34, 175, 115, .85);
+	padding: 2px 3px;
+	color: #fff;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .7);
+}
+
+form #map {
+	float: left;
+	width: 100%;
+	height: 10rem;
+}
+
+/*
+
+	список заказов
+
+*/
+.orders .items .item {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.orders .list .item.paid:after {
+	content: 'paid';
+	position: absolute;
+	left: -33px;
+	top: 2px;
+	background-color: rgba(34, 175, 115, .5);
+	border-radius: 5px;
+	padding: 3px 5px;
+	font-size: 10px;
+	color: #fff;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+}
+
+.orders .h2 {
+	width: 100%;
+	float: left;
+}
+
+.wrapper-item {
+	border: 1px solid;
+	margin: 5px;
+	padding: 8px;
+}
+
+.name-item {
+	border: 1px solid;
+	margin: 5px;
+}
+
+.block-item {
+	border: 1px solid;
+	padding: 5px;
+	margin: 5px;
+	display: flex;
+}
+
+.content-item {
+border: 1px solid;
+padding: 7px;
+margin: 5px;
+display: flex;
+}
+
+.text {
+display: inline-block;
+float: left;
+margin-right: 10px;
+}
+
+.block {
+border: 1px solid;
+padding: 3px;
+}
+
+.fields {
+	border: 1px solid;
+	padding: 5px;
+}
+
+.field-item {
+	border: 1px solid;
+	padding: 5px;
+	margin: 2px;
+	display: flex;
+}
+
+.field-item div {
+	border: 1px solid;
+	display: inline-block;
+	margin: 2px;
+	padding: 2px;
+}
+
+.field-item form div {
+	border: 0px;
+
+	}
+
+.submit a {
+margin-right: 10px;
+}
