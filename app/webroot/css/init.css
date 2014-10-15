@@ -10,7 +10,7 @@ self descriptive tags are much easier to remember
 */
 
 /* reset */
-body, div, p, h1, h2, h3, input, label, ul, li, ol {
+body, div, p, h1, h2, h3, input, textarea, label, ul, li, ol {
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;

@@ -44,6 +44,14 @@ body {
 }
 
 /*
+	текстовая иерархия
+*/
+.h2 {
+	margin: 10px 0 20px;
+	font-size: 20px;
+}
+
+/*
 	прызыв и телефон сверху
 */
 .call-1 {
@@ -524,3 +532,25 @@ body {
 	border-radius: 0 3px 3px 0;
 }
 
+/* итого */
+.basket-wrapper .order-total {
+	text-align: center;
+	font-size: 30px;
+	border: solid 1px rgba(0, 0, 0, .5);
+	border-left: none;
+	border-right: none;
+	padding: 20px 0;
+}
+
+.form-to-send-order form {
+	width: 500px;
+	float: left;
+}
+
+.form-to-send-order textarea,
+.form-to-send-order input {
+	width: 100%;
+	font-size: 20px;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+}

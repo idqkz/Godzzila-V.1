@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"respon",
+				"responseText"
+			],
+			[
+				"item",
+				"item_id"
+			],
+			[
+				"res",
+				"respnonse_data"
+			],
+			[
+				"respo",
+				"respnonse_data"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"bask",
+				"basket_total"
+			],
+			[
+				"repo",
+				"respnonse_data"
+			],
+			[
+				"cli",
+				"clicked_obj"
+			],
+			[
 				"ubu",
 				"UbuntuMedium"
 			],
@@ -94,10 +126,6 @@
 			[
 				"img",
 				"img_src"
-			],
-			[
-				"item",
-				"item_number"
 			],
 			[
 				"pace",
@@ -472,10 +500,6 @@
 				"NotoSansBold"
 			],
 			[
-				"res",
-				"responseText"
-			],
-			[
 				"menu",
 				"menu-wrapper"
 			],
@@ -490,43 +514,11 @@
 			[
 				"scr",
 				"scr_height"
-			],
-			[
-				"ani",
-				"animation_number"
-			],
-			[
-				"anim",
-				"animation_number"
-			],
-			[
-				"ini",
-				"init_bg_animation"
-			],
-			[
-				"sc",
-				"scr_height"
-			],
-			[
-				"fo",
-				"foreach	foreach …"
-			],
-			[
-				"child",
-				"children"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "app/Controller/PagesController.php",
-			"settings":
-			{
-				"buffer_size": 4445,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -552,6 +544,24 @@
 	},
 	"file_history":
 	[
+		"/Users/yy/www/godzilla.kz/app/View/Elements/block-items_out.ctp",
+		"/Users/yy/www/godzilla.kz/app/webroot/js/order_script.js",
+		"/Users/yy/www/godzilla.kz/app/View/Layouts/default.ctp",
+		"/Users/yy/www/godzilla.kz/app/webroot/css/theme.css",
+		"/Users/yy/www/godzilla.kz/app/View/Pages/basket.ctp",
+		"/Users/yy/www/godzilla.kz/app/Controller/PagesController.php",
+		"/Users/yy/www/godzilla.kz/app/Model/Item.php",
+		"/Users/yy/www/godzilla.kz/app/webroot/js/site_functions.js",
+		"/Users/yy/www/godzilla.kz/app/View/Pages/home.ctp",
+		"/Users/yy/www/godzilla.kz/app/webroot/js/order_sctip.js",
+		"/Users/yy/www/godzilla.kz/app/View/Elements/items-selector-out.ctp",
+		"/Users/yy/www/godzilla.kz/app/Config/database.php",
+		"/Users/yy/www/godzilla.kz/app/Controller/AdminsController.php",
+		"/Users/yy/www/godzilla.kz/app/Controller/AdminController.php",
+		"/Users/yy/www/godzilla.kz/app/View/Admin/catagory_menu.ctp",
+		"/Users/yy/www/godzilla.kz/app/View/Layouts/admin.ctp",
+		"/Users/yy/www/godzilla.kz/app/webroot/css/init.css",
+		"/Users/yy/www/godzilla.kz/app/webroot/.htaccess",
 		"/Users/yy/www/angels.kz-new/app/View/Pages/home.ctp",
 		"/Users/yy/www/angels.kz-new/app/View/Pages/about.ctp",
 		"/Users/yy/www/angels.kz-new/app/View/Pages/rates.ctp",
@@ -561,7 +571,6 @@
 		"/Users/yy/www/angels.kz-new/app/Controller/PagesController.php",
 		"/Users/yy/www/angels.kz-new/app/webroot/css/theme.css",
 		"/Users/yy/www/css-reset-file/init.css",
-		"/Users/yy/www/godzilla.kz/app/webroot/css/init.css",
 		"/Users/yy/www/metallcon.kz/index.php",
 		"/Users/yy/www/nur/index.php",
 		"/Users/yy/Documents/проекты/domi.kz/domi.kz-remarketing.php",
@@ -569,21 +578,15 @@
 		"/Users/yy/www/zamena/index.php",
 		"/Users/yy/www/zamena/css/admin.css",
 		"/Users/yy/www/zamena/css/init.css",
-		"/Users/yy/www/godzilla.kz/app/Config/database.php",
 		"/Users/yy/www/godzilla.kz/app/View/Admin/menu_item_all.ctp",
 		"/Users/yy/www/godzilla.kz/app/View/Admin/orders_all.ctp",
 		"/Users/yy/www/godzilla.kz/app/View/Admin/users.ctp",
 		"/Users/yy/www/godzilla.kz/app/View/Elements/order-all-out.ctp",
 		"/Users/yy/www/godzilla.kz/app/View/Pages/add_order.ctp",
-		"/Users/yy/www/godzilla.kz/app/View/Pages/basket.ctp",
 		"/Users/yy/www/godzilla.kz/app/View/Pages/send_order.ctp",
 		"/Users/yy/www/godzilla.kz/app/View/Admin/menu_item.ctp",
 		"/Users/yy/www/godzilla.kz/app/View/Pages/home_.ctp",
-		"/Users/yy/www/godzilla.kz/app/View/Pages/home.ctp",
-		"/Users/yy/www/godzilla.kz/app/Controller/AdminController.php",
 		"/Users/yy/www/godzilla.kz/app/Model/Image.php",
-		"/Users/yy/www/godzilla.kz/app/Model/Item.php",
-		"/Users/yy/www/godzilla.kz/app/View/Elements/block-items_out.ctp",
 		"/Users/yy/Library/Caches/Cleanup At Startup/Transmit/FE326DCF-4C9F-4548-AB2E-52377626AA5F/theme.css",
 		"/Users/yy/www/asemkala.kz/app/View/Admin/users.ctp",
 		"/Users/yy/www/asemkala.kz/app/Controller/AdminController.php",
@@ -668,18 +671,7 @@
 		"/Users/yy/www/asemkala.kz/app/View/Pages/jobs.ctp",
 		"/Users/yy/www/asemkala.kz/app/Model/Image.php",
 		"/Users/yy/www/asemkala.kz/app/webroot/js/flat_selection_functions.js",
-		"/Users/yy/www/asemkala.kz/app/View/Admin/jobs_category.ctp",
-		"/Users/yy/www/asemkala.kz/app/View/Admin/jobs.ctp",
-		"/Users/yy/www/asemkala.kz/app/Model/Job.php",
-		"/Users/yy/www/asemkala.kz/app/Controller/AppController.php",
-		"/Users/yy/Downloads/Архив ZIP - WinRAR.1/PagesController.php",
-		"/Users/yy/www/asemkala.kz/app/View/Pages/view_large_image.ctp",
-		"/Users/yy/www/asemkala.kz/app/View/Pages/floors-altair.ctp",
-		"/Users/yy/www/asemkala.kz/app/Model/Text.php",
-		"/Users/yy/www/asemkala.kz/app/View/Elements/menu-v1.ctp",
-		"/Users/yy/www/asemkala.kz/app/View/Layouts/asemkala.kz.sublime-workspace",
-		"/Users/yy/www/asemkala.kz/app/View/Admin/index.ctp",
-		"/Users/yy/www/asemkala.kz/app/Model/Item.php"
+		"/Users/yy/www/asemkala.kz/app/View/Admin/jobs_category.ctp"
 	],
 	"find":
 	{
@@ -698,6 +690,26 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"basket_total",
+			"$(this)",
+			"fin_price",
+			"$(this)",
+			"order_functions",
+			"74px",
+			"'count'",
+			"count",
+			"'count'",
+			"id_item",
+			"count",
+			"price-",
+			"description",
+			"selector",
+			"options",
+			"active",
+			"\n.shop-menu .items-selector a",
+			"id",
+			"alias",
+			"id_rolls",
 			"main",
 			"expanded",
 			"menu",
@@ -805,27 +817,7 @@
 			".menu",
 			"order",
 			"engineer",
-			".wrapper",
-			"800px",
-			"190",
-			"-1-",
-			";\n",
-			"perplexing",
-			"created",
-			"news_a",
-			"order",
-			"altair",
-			"#fff",
-			"next",
-			"slider_func.",
-			"item_animation",
-			"site_functions.bg_animation",
-			"FuturaBookC",
-			"active",
-			"Альтаир",
-			"Нью-Йорк",
-			"6",
-			"window."
+			".wrapper"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -855,36 +847,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/Controller/PagesController.php",
-					"settings":
-					{
-						"buffer_size": 4445,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

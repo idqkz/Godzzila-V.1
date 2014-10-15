@@ -21,7 +21,7 @@
 					$description_html .= $this->Html->div('description', $item['Item']['description']);
 
 					//	проверка какие кнопки ставить
-					if ($item['Item']['price_2'] != null) {
+					if ($item['Item']['price'] != null) {
 
 						$price = $this->Html->div('pcs', '4 штуки');
 						$price .= $this->Html->div('pcs-price', $item['Item']['price'] . ' тг');
@@ -33,6 +33,8 @@
 						$quantity = 8;
 
 					} else {
+						$price = $this->Html->div('pcs-price', $item['Item']['price_2'] . ' тг');
+						$description_html .= $this->Html->div('qty-selector btn btn-primary active', $price, array('data-quantity' => 1));
 						$quantity = 1;
 					}
 
