@@ -542,7 +542,7 @@ body {
 	padding: 20px 0;
 }
 
-.form-to-send-order form {
+.form-to-send-order {
 	width: 500px;
 	float: left;
 }
@@ -553,4 +553,19 @@ body {
 	font-size: 20px;
 	padding: 5px 10px;
 	margin-bottom: 10px;
+}
+
+.basket-wrapper #map {
+	height: 400px;
+	width: 500px;
+	float: left;
+	margin-left: 50px;
+	margin-bottom: 50px;
+}
+
+/*
+	
+*/
+.thank-you {
+	background-color: #fff;
 }

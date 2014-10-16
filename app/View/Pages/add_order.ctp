@@ -6,7 +6,7 @@
 			echo $this->form->input('name', array('label' => 'ФИО'));
 			echo $this->form->input('phone', array('label' => 'Контактный телефон'));
 			// echo $this->form->input('email', array('label' => 'Е-mail'));
-			echo $this->form->input('adress', array('label' => 'Адресс доставки'));
+			echo $this->form->input('address', array('label' => 'Адресс доставки'));
 			
 			echo $this->form->input('message', array('label' => 'Коментарии', 'type' => 'textarea'));
 			echo $this->form->hidden('stiker');

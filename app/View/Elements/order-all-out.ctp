@@ -14,7 +14,7 @@
 		foreach ($orders as $order) {
 			$pay_price = null;
 			foreach ($order['Item'] as $i => $value) {
-				$pay_price += $value['price'] * $value['ItemsOrder']['kol'];
+				$pay_price += $value['price'] * $value['ItemsOrder']['quantity'];
 			}
 			
 			echo $this->Html->div('col-10');

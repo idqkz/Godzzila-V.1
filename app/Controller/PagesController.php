@@ -144,37 +144,35 @@ class PagesController extends AppController {
 	
 	public function add_order() {
 
-		if(($this->data['Order']['name'] != null)
-		&& ($this->data['Order']['phone'] != null)
-		&& ($this->data['Order']['adress'] !=null)
-		&& ($this->Session->read('basket') != null) ){
-			$user_data = $this->User->get_user_data($this->data['Order']);
-			
-			if (!empty($this->data)){
-				$this->request->data['Order']['user_id'] = $user_data['id'];
-				$this->Order->save($this->data['Order']);
-				$order_id = $this->Order->getInsertID();
-				$order = $this->Session->read('basket');
-
-				foreach ($order as $item_id => $item_info) {
-					$items_orders[$item_id] = array(
-						'item_id' => $item_id,
-						'order_id' => $order_id,
-						'kol' => $item_info['quantity'],
-						);
-					$this->ItemsOrder->create();
-					$this->ItemsOrder->save($items_orders[$item_id]);
-					$items_orders = null;
-				}
-				unset($this->data);
-			}
-
-			$this->Session->write('basket', null);
-		} else {
-			$this->Session->setFlash('Заполните все поля');
-			$this->redirect(array('controller' => 'pages', 'action' => 'basket'));
+		//	проверка пользователя и получение данных
+		$user_data = $this->User->get_user_data($this->data['Order']);
+		$basket = $this->Session->read('basket');
+		
+		$this->request->data['Order']['user_id'] = $user_data['id'];
+		$this->request->data['Order']['total'] = $basket['order_total'];
+		$this->Order->save($this->data['Order']);
+		$order_id = $this->Order->getInsertID();
+		
+		foreach ($basket['items'] as $item_id => $item_info) {
+			$items_orders[$item_id] = array(
+				'item_id' => $item_id,
+				'order_id' => $order_id,
+				'quantity' => $item_info['quantity'],
+				'total' => $item_info['sub_total']
+				);
+			$this->ItemsOrder->create();
+			$this->ItemsOrder->save($items_orders[$item_id]);
 		}
-		$this->redirect(array('controller' => 'pages', 'action' => 'menu'));
+
+		$this->Session->write('basket', null);
+
+		$this->Session->setFlash('Спасибо, ваш заказ принят в обработку, сейчас всё проверим и перезвоним!');
+
+		$this->redirect(array('controller' => 'pages', 'action' => 'thank_you'));
+	}
+
+	public function thank_you() {
+		//	отправка заказа
 	}
 
 	public function send_order(){

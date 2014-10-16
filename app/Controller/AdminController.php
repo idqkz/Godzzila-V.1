@@ -26,7 +26,7 @@ class AdminController extends AppController {
 	public function beforeRender() {
 		parent::beforeRender();
 		$main_menu_items_for_operator = array(
-			'Заказы'			=>	array('controller' => 'admin', 'action' => 'orders_all'),	
+			'Заказы'			=>	array('controller' => 'admin', 'action' => 'orders'),	
 			'Меню'				=>	array('controller' => 'admin', 'action' => 'menu_item_all'),
 			'Создать заказ'		=>	array('controller' => 'admin', 'action' => 'order_make'/*,
 				'sub_menu' => array(
@@ -39,7 +39,7 @@ class AdminController extends AppController {
 		$main_menu_items = array(
 			'Настройки'				=>	array('controller' => 'admin', 'action' => 'settings'),
 
-			'Заказы'			=>	array('controller' => 'admin', 'action' => 'orders_all'/*,
+			'Заказы'			=>	array('controller' => 'admin', 'action' => 'orders'/*,
 				'sub_menu' => array(
 					'Создать заказ'		=>	array('controller' => 'admin', 'action' => 'order_make'),
 					)*/
@@ -91,9 +91,6 @@ class AdminController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		// $pr = $this->Item->findById('13');
-		// debug($pr);
-		// die();
 
 		$this->layout = 'admin';
 		$this->Auth->allow(array('login'));
@@ -154,6 +151,21 @@ class AdminController extends AppController {
 		$this->set(compact('category_item'));
 	}
 
+	public function orders() {
+		//	get a list of orders
+		$this->Order->recursice = 0;
+		$orders = $this->Order->find('all', array(
+			'conditions' => array(),
+			'order' => 'created ASC'
+		));
+		$this->set(compact('orders'));
+	}
+
+	public function order_details($id) {
+		$this->request->data = $this->Order->findById($id);
+
+	}
+
 	public function orders_all($id = null, $znak = null){
 		$category_items = $this->CategoryItem->find('all', array(
 				'fields' => array('CategoryItem.alias', 'CategoryItem.name'),
@@ -169,18 +181,18 @@ class AdminController extends AppController {
 		}		
 
 		if(($znak == 'plus')||($znak == 'minus')){ //Добавление/удаление суши
-			$items_kol = $this->ItemsOrder->findById($id);
+			$items_quantity = $this->ItemsOrder->findById($id);
 			if($znak == 'plus'){
-				$items_kol['ItemsOrder']['kol']++;
+				$items_quantity['ItemsOrder']['quantity']++;
 			}
 			if($znak == 'minus'){
-				$items_kol['ItemsOrder']['kol']--;
-				if ($items_kol['ItemsOrder']['kol'] < 0){
-					$items_kol['ItemsOrder']['kol'] = 0;
+				$items_quantity['ItemsOrder']['quantity']--;
+				if ($items_quantity['ItemsOrder']['quantity'] < 0){
+					$items_quantity['ItemsOrder']['quantity'] = 0;
 				}
 			}
-			$this->ItemsOrder->save($items_kol['ItemsOrder']);
-			$this->redirect(array('controller' => 'admin', 'action' => $this->action,$items_kol['ItemsOrder']['order_id']));
+			$this->ItemsOrder->save($items_quantity['ItemsOrder']);
+			$this->redirect(array('controller' => 'admin', 'action' => $this->action,$items_quantity['ItemsOrder']['order_id']));
 		}
 
 		if($id != null){

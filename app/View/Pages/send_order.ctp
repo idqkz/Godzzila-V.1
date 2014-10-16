@@ -12,25 +12,25 @@
 					<div class="h2">Ваша корзина</div>
 					<?php
 						echo $this->html->div('name', 'Название');
-						echo $this->html->div('kol', 'Количество');
+						echo $this->html->div('quantity', 'Количество');
 						// echo $this->html->div('price col-1', 'Цена');
-						echo $this->html->div('kol_price', 'Цена');
+						echo $this->html->div('quantity_price', 'Цена');
 					?>
 				</div>
 					<?php
 						$i = 0;
 						$fin_price = null;
-						foreach ($basket as $item_id => $kol):
+						foreach ($basket as $item_id => $quantity):
 
-							$kol_plus = $this->Html->div('plus', $this->html->link('+', 
+							$quantity_plus = $this->Html->div('plus', $this->html->link('+', 
 								array('controller' => 'pages', 'action' => $this->action, 'plus', $item_id)));
 
-							$kol_minus = $this->Html->div('minus', $this->html->link('-', 
+							$quantity_minus = $this->Html->div('minus', $this->html->link('-', 
 								array('controller' => 'pages', 'action' => $this->action, 'minus', $item_id)));
 
-							$kol_price = $kol*$items[$item_id]['Item']['price'];
+							$quantity_price = $quantity*$items[$item_id]['Item']['price'];
 
-							$fin_price += $kol_price;
+							$fin_price += $quantity_price;
 
 							$name_image = $this->Html->div('item-image', 
 								$this->Html->image(unserialize($items[$item_id]['Image']['medium'])));
@@ -41,7 +41,7 @@
 
 							$name = $name_image.$name.$name_price;
 
-							$kol = $kol_minus.$this->Html->div('price', $kol.' шт').$kol_plus;
+							$quantity = $quantity_minus.$this->Html->div('price', $quantity.' шт').$quantity_plus;
 							
 							$delete = $this->html->link('Удалить', 
 								array('controller' => 'pages', 'action' => 'delete_basket', $item_id),
@@ -51,9 +51,9 @@
 					<div class="order-item-line">
 						<?php
 							echo $this->html->div('name', $name);
-							echo $this->html->div('kol', $kol);
+							echo $this->html->div('quantity', $quantity);
 							// echo $this->html->div('price col-1',$items[$item_id]['Item']['price']);
-							echo $this->html->div('kol_price', $kol_price);
+							echo $this->html->div('quantity_price', $quantity_price);
 							echo $this->html->div('submit', $delete);
 						?>
 					</div>
@@ -74,7 +74,7 @@
 				echo $this->form->input('name', array('label' => 'ФИО'));
 				echo $this->form->input('phone', array('label' => 'Контактный телефон'));
 				echo $this->form->input('email', array('label' => 'Е-mail'));
-				echo $this->form->input('adress', array('label' => 'Адресс доставки'));
+				echo $this->form->input('address', array('label' => 'Адресс доставки'));
 				
 				echo $this->form->input('message', array('label' => 'Коментарии', 'type' => 'textarea'));
 				echo $this->form->hidden('stiker');

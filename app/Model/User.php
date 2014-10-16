@@ -94,9 +94,7 @@ class User extends AppModel {
     }
 
     public function get_user_data($data = null) {
-		// $data = $user = $this->findById(AuthComponent::user('id'));
-		// debug($data);
-    	// die();
+
     	if (AuthComponent::user('id')) {
 			$user = $this->findById(AuthComponent::user('id'));
 		} else {
@@ -114,7 +112,7 @@ class User extends AppModel {
 						'name' => $data['name'],
 						'phone' => $data['phone'],
 						'email' => $data['email'],
-						'adress' => $data['adress'],
+						'address' => $data['address'],
 						'password' => AuthComponent::password($password),
 						'status' => 0,
 						'group_id' => $Group->new_user_group()

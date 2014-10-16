@@ -32,10 +32,10 @@
 						$item_price = $this->Html->div('price', $item_price);
 
 						// Кнопки + - Х
-						$kol_plus = $this->Html->link('+', 
+						$quantity_plus = $this->Html->link('+', 
 							array('controller' => 'pages', 'action' => 'change_basket'),
 							array('class' => 'btn btn-success', 'data-quantity' => $change_count, 'data-item-id' => $item_id));
-						$kol_minus = $this->Html->link('-', 
+						$quantity_minus = $this->Html->link('-', 
 							array('controller' => 'pages', 'action' => 'change_basket'),
 							array('class' => 'btn btn-success', 'data-quantity' => $change_count * -1, 'data-item-id' => $item_id));
 						$del_link = $this->Html->link('X', 
@@ -43,11 +43,11 @@
 							array('class' => 'btn btn-danger remove-item-link'));
 
 						$name = 		$this->Html->div('item-info', $item_image . $item_name);
-						$kol = 			$this->Html->div('quantity-box', $kol_minus . $count . $kol_plus);
+						$quantity = 			$this->Html->div('quantity-box', $quantity_minus . $count . $quantity_plus);
 						$sub_total = 	$this->Html->div('sub-total', $this->Html->para('value', $basket_item['sub_total']) . ' тг');
 						$del_link = 	$this->Html->div('remove-link-wrapper', $del_link);
 
-						$table_cols .= $this->Html->div('row', $name . $kol . $sub_total . $del_link);
+						$table_cols .= $this->Html->div('row', $name . $quantity . $sub_total . $del_link);
 					}
 
 					$table_cols .= $this->Html->div('row order-total', 'Итого: ' . $this->Html->para('value', $basket['order_total']) . ' тг');
@@ -65,7 +65,10 @@
 					'url' => array('controller' => 'pages', 'action' => 'add_order'),
 					'inputDefaults' => array('label' => false)
 				));
+				//	TODO: нужно перенести установку статуса в модель, в beforeSave что бы при сохранении заказа без ID статус устанавливался
+				//	а еще лучше, в базе данных прописать значение по умолчанию :) тогда код вообще никакой не надо писать
 				echo $this->Form->hidden('status', array('value' => '1'));
+				echo $this->Form->hidden('location');
 				echo $this->Form->input('name', array('placeholder' => 'Как вас зовут', 'required' => true));
 				echo $this->Form->input('phone', array(
 					'type' => 'tel', 
@@ -73,19 +76,82 @@
 					'required' => true, 
 					'placeholder' => '8 707 456 789'));
 				echo $this->Form->input('email', array('placeholder' => 'Е-mail (не обезательно)'));
-				echo $this->Form->input('adress', array('placeholder' => 'Адресс доставки', 'required' => true));
+				echo $this->Form->input('address', array('placeholder' => 'Адресс доставки', 'required' => true));
 				
-				echo $this->Form->input('message', array('placeholder' => 'Коментарии', 'type' => 'textarea'));
-				echo $this->Form->hidden('stiker');
+				echo $this->Form->input('message', array('placeholder' => 'Коментарий, опишите как быстрее всего вас найти', 'type' => 'textarea'));
 				echo $this->Html->div('submit', $this->Form->submit('Сделать заказ', array('class' => 'btn btn-success', 'div' => false)));
 
 				echo $this->Form->end();
 
-				endif;
 			?>
 		</div>
 
-		
+		<div id='map'></div>
+
+		<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+		<script type="text/javascript">
+		ymaps.ready(init);
+
+		function init() {
+			var coords = [51.1278, 71.4307];
+		    var myPlacemark,
+		        myMap = new ymaps.Map('map', {
+		            center: coords,
+		            zoom: 12
+		        });
+
+		    // Слушаем клик на карте
+		    myMap.events.add('click', function (e) {
+		        var coords = e.get('coords');
+		        console.log(coords);
+
+		        // Если метка уже создана – просто передвигаем ее
+		        if (myPlacemark) {
+		            myPlacemark.geometry.setCoordinates(coords);
+		        }
+		        // Если нет – создаем.
+		        else {
+		            myPlacemark = createPlacemark(coords);
+		            myMap.geoObjects.add(myPlacemark);
+		            // Слушаем событие окончания перетаскивания на метке.
+		            myPlacemark.events.add('dragend', function () {
+		                getAddress(myPlacemark.geometry.getCoordinates());
+		            });
+		        }
+		        getAddress(coords);
+		        form = document.getElementById('OrderLocation');
+		        form.value = ([coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', '));
+		    });
+
+		    // Создание метки
+		    function createPlacemark(coords) {
+		        return new ymaps.Placemark(coords, {
+
+		        }, {
+		            preset: 'islands#violetStretchyIcon',
+		            draggable: true
+		        });
+		    }
+
+		    // Определяем адрес по координатам (обратное геокодирование)
+		    function getAddress(coords) {
+		        myPlacemark.properties.set('iconContent', 'поиск...');
+		        ymaps.geocode(coords).then(function (res) {
+		            var firstGeoObject = res.geoObjects.get(0);
+
+		            myPlacemark.properties
+		                .set({
+		                    iconContent: firstGeoObject.properties.get('name'),
+		                    balloonContent: firstGeoObject.properties.get('text')
+		                });
+		        });
+		    }
+
+		}
+		</script>
+		<?php
+			endif;
+		?>
 	</div>
 </div>
 
