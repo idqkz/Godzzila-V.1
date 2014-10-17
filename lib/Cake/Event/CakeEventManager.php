@@ -29,7 +29,7 @@ class CakeEventManager {
 /**
  * The default priority queue value for new, attached listeners
  *
- * @var int
+ * @var integer
  */
 	public static $defaultPriority = 10;
 
@@ -43,14 +43,14 @@ class CakeEventManager {
 /**
  * List of listener callbacks associated to
  *
- * @var object
+ * @var object $Listeners
  */
 	protected $_listeners = array();
 
 /**
  * Internal flag to distinguish a common manager from the singleton
  *
- * @var bool
+ * @var boolean
  */
 	protected $_isGlobal = false;
 

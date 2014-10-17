@@ -53,7 +53,7 @@ class CakeValidationSet implements ArrayAccess, IteratorAggregate, Countable {
 /**
  * Whether the validation is stopped
  *
- * @var bool
+ * @var boolean
  */
 	public $isStopped = false;
 
@@ -115,7 +115,7 @@ class CakeValidationSet implements ArrayAccess, IteratorAggregate, Countable {
  * validation errors
  *
  * @param array $data Data array
- * @param bool $isUpdate Is record being updated or created
+ * @param boolean $isUpdate Is record being updated or created
  * @return array list of validation errors for this field
  */
 	public function validate($data, $isUpdate = false) {
@@ -191,7 +191,7 @@ class CakeValidationSet implements ArrayAccess, IteratorAggregate, Countable {
  *
  * @param string $name The name under which the rule should be set
  * @param CakeValidationRule|array $rule The validation rule to be set
- * @return $this
+ * @return CakeValidationSet this instance
  */
 	public function setRule($name, $rule) {
 		if (!($rule instanceof CakeValidationRule)) {
@@ -213,7 +213,7 @@ class CakeValidationSet implements ArrayAccess, IteratorAggregate, Countable {
  * }}}
  *
  * @param string $name The name under which the rule should be unset
- * @return $this
+ * @return CakeValidationSet this instance
  */
 	public function removeRule($name) {
 		unset($this->_rules[$name]);
@@ -233,8 +233,8 @@ class CakeValidationSet implements ArrayAccess, IteratorAggregate, Countable {
  * }}}
  *
  * @param array $rules The rules to be set
- * @param bool $mergeVars [optional] If true, merges vars instead of replace. Defaults to true.
- * @return $this
+ * @param boolean $mergeVars [optional] If true, merges vars instead of replace. Defaults to true.
+ * @return ModelField
  */
 	public function setRules($rules = array(), $mergeVars = true) {
 		if ($mergeVars === false) {
@@ -308,7 +308,7 @@ class CakeValidationSet implements ArrayAccess, IteratorAggregate, Countable {
  * Returns whether an index exists in the rule set
  *
  * @param string $index name of the rule
- * @return bool
+ * @return boolean
  */
 	public function offsetExists($index) {
 		return isset($this->_rules[$index]);
@@ -361,7 +361,7 @@ class CakeValidationSet implements ArrayAccess, IteratorAggregate, Countable {
 /**
  * Returns the number of rules in this set
  *
- * @return int
+ * @return integer
  */
 	public function count() {
 		return count($this->_rules);

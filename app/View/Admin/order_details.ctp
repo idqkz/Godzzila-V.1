@@ -5,25 +5,49 @@
 		</div>
 		<?php
 
-			echo $this->Html->div('order-info', 
+			echo $this->Html->div('order-info col-10', 
+				$this->Html->div('row', 
+					$this->Form->create('Order')
+				.	$this->Form->hidden('id')
+				.	$this->Form->input('Order.status', array('label' => 'Статус', 'options' => $options_status))
+				.	$this->Form->input('info.time', array('label' => 'Время доставки', 'options' => $options_time))
+				.	$this->Form->input('Order.name', array('label' => 'Имя'))
+				.	$this->Form->input('Order.address', array('label' => 'Адресс'))
+				.	$this->Html->div('time', $this->data['Order']['created'])
+				.	$this->Html->div('total', $this->data['Order']['total'])
+				.	$this->Form->submit('Сохранить', array('class' => 'btn btn-success'))
+				.	$this->Form->end()
+			));
+
+			/*echo $this->Html->div('order-info col-10', 
 				$this->Html->div('row', 
 					$this->Html->div('name', $this->data['Order']['name'])
 				.	$this->Html->div('address', $this->data['Order']['address'])
 				.	$this->Html->div('time', $this->data['Order']['created'])
 				.	$this->Html->div('total', $this->data['Order']['total'])
-			));
+			));*/
+			$edit_link = $this->Html->link('Ред. заказ',
+				array('controller' => 'admin', 'action' => 'order_items_edit', $this->data['Order']['id']),
+				array('class' => 'btn btn-primary'));
 
 			$items_html = $this->Html->div('row heading', 
 				$this->Html->div('name', 'наименование')
 			.	$this->Html->div('quantity', 'количество')
 			.	$this->Html->div('total', 'под итог')
-			.	$this->Html->div('link', '')
+			.	$this->Html->div('link', $edit_link)
 			);
 
 			foreach ($this->data['Item'] as $item_data) {
+				($item_data['price'] != null ? $change_count = '4' : $change_count = '1');
+				$quantity_plus = $this->Html->link('+', 
+					array('controller' => 'admin', 'action' => 'order_items_change_quantity', $id, $item_data['ItemsOrder']['id'], $change_count),
+					array('class' => 'btn btn-success'));
+				$quantity_minus = $this->Html->link('-', 
+					array('controller' => 'admin', 'action' => 'order_items_change_quantity', $id, $item_data['ItemsOrder']['id'], $change_count*-1),
+					array('class' => 'btn btn-success'));
 
 				$name = $this->Html->div('name', $item_data['name']);
-				$quantity = $this->Html->div('quantity', $item_data['ItemsOrder']['quantity']);
+				$quantity = $this->Html->div('quantity', $quantity_minus . $item_data['ItemsOrder']['quantity'] . $quantity_plus);
 				$sub_total = $this->Html->div('sub_total', $item_data['ItemsOrder']['total']);
 				$remove = $this->Html->div('remove', 
 					$this->Html->link('x', 

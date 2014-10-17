@@ -997,23 +997,6 @@ class RouterTest extends CakeTestCase {
 	}
 
 /**
- * Test that URL's fail to parse when they are prefixed with //
- *
- * @return void
- */
-	public function testUrlParseFailureDoubleSlash() {
-		Router::connect('/posts', array('controller' => 'posts', 'action' => 'index'));
-		$result = Router::parse('/posts');
-		$this->assertEquals(
-			array('pass' => array(), 'named' => array(), 'plugin' => null, 'controller' => 'posts', 'action' => 'index'),
-			$result
-		);
-
-		$result = Router::parse('//posts');
-		$this->assertEquals(array(), $result);
-	}
-
-/**
  * testUrlParsing method
  *
  * @return void

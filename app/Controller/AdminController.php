@@ -161,12 +161,82 @@ class AdminController extends AppController {
 		$this->set(compact('orders'));
 	}
 
-	public function order_details($id) {
-		$this->request->data = $this->Order->findById($id);
+	public function order_details($id = null) {
+		if(!empty($this->data)){
+			$this->Order->save($this->data);
+			$this->Session->setFlash('Изменения сохранены');
+		}
 
+		if($id != null){
+			$this->request->data = $this->Order->findById($id);
+		}
+
+		$options_status =$this->Order->status_order;
+		$options_time =$this->Order->time_order;
+
+		$this->set(compact('options_status', 'options_time', 'id'));
 	}
 
-	public function orders_all($id = null, $znak = null){
+	public function order_items_edit($id = null) {
+		if(!empty($this->data)){
+			$order_total = null;
+			foreach ($this->data['Item'] as $item_id => $items_order) {
+				// Проверка на пустоту поля или на значени 0
+				if(	($items_order['ItemsOrder']['quantity'] != null) 
+				&&	($items_order['ItemsOrder']['quantity'] != 0))
+				{
+					// Сохраняем наименование
+					$items_order['ItemsOrder']['total'] = 
+						$this->Item->get_sub_total_for_item($item_id, $items_order['ItemsOrder']['quantity']);
+					$items_order['ItemsOrder']['item_id'] = $item_id;
+					$items_order['ItemsOrder']['order_id'] = $id;
+					$this->ItemsOrder->save($items_order['ItemsOrder']);
+					$order_total += $items_order['ItemsOrder']['total'];
+				}
+			}
+			// Сохроняем итоговую сумму
+			$this->Order->save(array(
+				'id' => $id,
+				'total' => $order_total,
+				));
+			$this->Session->setFlash('Заказ изменён!');
+			$this->redirect(array('controller' => 'admin', 'action' => 'order_details', $id));
+		}
+
+		$category_item = $this->CategoryItem->find('all'); 
+		$this->request->data = $this->Order->findById($id);
+
+		$this->request->data['Item'] = Hash::combine($this->data['Item'], '{n}.id', '{n}');
+
+		$this->set(compact('category_item', 'id'));
+	}
+
+	public function order_items_change_quantity($id_order = null, $id_items_order, $quantity) {
+		// Получаем ItemsOrder
+		$order_item = $this->ItemsOrder->findById($id_items_order);
+		// Меняем количество
+		$quantity += $order_item['ItemsOrder']['quantity'];
+
+		// Проверяем если количество <=0 удаляем ItemsOrder
+		if($quantity <= 0){
+			$this->ItemsOrder->delete($id_items_order);
+			$this->redirect(array('controller' => 'admin', 'action' =>'order_details', $id_order));
+		}
+
+		// Считаем итого
+		$sub_total = $this->Item->get_sub_total_for_item($order_item['ItemsOrder']['item_id'], $quantity);
+
+		// Сохраняем
+		$order_item['ItemsOrder']['total'] = $sub_total;
+		$order_item['ItemsOrder']['quantity'] = $quantity;
+		$this->ItemsOrder->save($order_item['ItemsOrder']);
+		// Обновляем итогов заказе
+		$this->Order->update_total_order($id_order);
+
+		$this->redirect(array('controller' => 'admin', 'action' =>'order_details', $id_order));
+	}
+
+	/*public function orders_all($id = null, $znak = null){
 		$category_items = $this->CategoryItem->find('all', array(
 				'fields' => array('CategoryItem.alias', 'CategoryItem.name'),
 			));
@@ -201,11 +271,9 @@ class AdminController extends AppController {
 
 		$orders = $this->Order->find('all');
 		$this->set(compact('orders','id','items_list'));
-	}
+	}*/
 
-	public function order_change($id = null) {
-		// debug($this->data);
-		// die();
+	/*public function order_change($id = null) {
 		if (!empty($this->data)) {
 			if($this->data['ItemsOrder']['item_id'] != 0) {
 				$this->request->data['ItemsOrder']['order_id'] = $id;
@@ -216,9 +284,9 @@ class AdminController extends AppController {
 		}
 		unset($this->data);
 		$this->redirect(array('controller' => 'admin', 'action' => 'orders_all',$id));
-	}
+	}*/
 
-	public function order_make(){
+	/*public function order_make(){
 		$category_items = $this->CategoryItem->find('all', array(
 				'fields' => array('CategoryItem.alias', 'CategoryItem.name'),
 			));
@@ -233,7 +301,7 @@ class AdminController extends AppController {
 		}
 
 		$this->set(compact('items_list'));
-	}
+	}*/
 
 	public function users($user_id = null){
 		$admins_id = $this->Group->find('all', array('conditions' => array('Group.name' => 'Администраторы')));
@@ -349,6 +417,16 @@ class AdminController extends AppController {
 		$this->redirect(array('controller' => 'admin', 'action' => 'catagory_menu'));
 	}
 
+	public function remove_item_from_order($id = null) {
+		if($id != null){
+			$id_order = $this->ItemsOrder->findById($id);
+			$id_order = $id_order['ItemsOrder']['order_id'];
+			$this->ItemsOrder->delete($id);
+			$this->Session->setFlash('Пункт заказа удалён!');
+			$this->Order->update_total_order($id_order);
+			$this->redirect(array('controller' => 'admin', 'action' => 'order_details', $id_order));
+		}
+	}
 // 
 
 }

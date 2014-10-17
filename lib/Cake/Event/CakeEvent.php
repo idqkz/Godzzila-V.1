@@ -26,7 +26,7 @@ class CakeEvent {
 /**
  * Name of the event
  *
- * @var string
+ * @var string $name
  */
 	protected $_name = null;
 
@@ -40,21 +40,21 @@ class CakeEvent {
 /**
  * Custom data for the method that receives the event
  *
- * @var mixed
+ * @var mixed $data
  */
 	public $data = null;
 
 /**
  * Property used to retain the result value of the event listeners
  *
- * @var mixed
+ * @var mixed $result
  */
 	public $result = null;
 
 /**
  * Flags an event as stopped or not, default is false
  *
- * @var bool
+ * @var boolean
  */
 	protected $_stopped = false;
 
@@ -121,7 +121,7 @@ class CakeEvent {
 /**
  * Check if the event is stopped
  *
- * @return bool True if the event is stopped
+ * @return boolean True if the event is stopped
  */
 	public function isStopped() {
 		return $this->_stopped;

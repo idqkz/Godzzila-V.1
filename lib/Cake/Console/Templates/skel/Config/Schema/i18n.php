@@ -10,6 +10,7 @@
  */
 
 /**
+ *
  * Using the Schema command line utility
  *
  * Use it to configure database for i18n
@@ -29,7 +30,7 @@ class I18nSchema extends CakeSchema {
  * Before event.
  *
  * @param array $event The event data.
- * @return bool success
+ * @return boolean success
  */
 	public function before($event = array()) {
 		return true;

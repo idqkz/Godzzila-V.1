@@ -44,7 +44,7 @@ class ExtractTask extends AppShell {
 /**
  * Merge all domain and category strings into the default.pot file
  *
- * @var bool
+ * @var boolean
  */
 	protected $_merge = false;
 
@@ -93,21 +93,21 @@ class ExtractTask extends AppShell {
 /**
  * Holds whether this call should extract model validation messages
  *
- * @var bool
+ * @var boolean
  */
 	protected $_extractValidation = true;
 
 /**
  * Holds the validation string domain to use for validation messages when extracting
  *
- * @var bool
+ * @var boolean
  */
 	protected $_validationDomain = 'default';
 
 /**
  * Holds whether this call should extract the CakePHP Lib messages
  *
- * @var bool
+ * @var boolean
  */
 	protected $_extractCore = false;
 
@@ -398,7 +398,7 @@ class ExtractTask extends AppShell {
 			}
 
 			list($type, $string, $line) = $countToken;
-			if (($type == T_STRING) && ($string === $functionName) && ($firstParenthesis === '(')) {
+			if (($type == T_STRING) && ($string == $functionName) && ($firstParenthesis === '(')) {
 				$position = $count;
 				$depth = 0;
 
@@ -678,8 +678,8 @@ class ExtractTask extends AppShell {
 /**
  * Get the strings from the position forward
  *
- * @param int &$position Actual position on tokens array
- * @param int $target Number of strings to extract
+ * @param integer &$position Actual position on tokens array
+ * @param integer $target Number of strings to extract
  * @return array Strings extracted
  */
 	protected function _getStrings(&$position, $target) {
@@ -728,9 +728,9 @@ class ExtractTask extends AppShell {
  * Indicate an invalid marker on a processed file
  *
  * @param string $file File where invalid marker resides
- * @param int $line Line number
+ * @param integer $line Line number
  * @param string $marker Marker found
- * @param int $count Count
+ * @param integer $count Count
  * @return void
  */
 	protected function _markerError($file, $line, $marker, $count) {
@@ -793,7 +793,7 @@ class ExtractTask extends AppShell {
  * Returns whether this execution is meant to extract string only from directories in folder represented by the
  * APP constant, i.e. this task is extracting strings from same application.
  *
- * @return bool
+ * @return boolean
  */
 	protected function _isExtractingApp() {
 		return $this->_paths === array(APP);
@@ -803,7 +803,7 @@ class ExtractTask extends AppShell {
  * Checks whether or not a given path is usable for writing.
  *
  * @param string $path Path to folder
- * @return bool true if it exists and is writable, false otherwise
+ * @return boolean true if it exists and is writable, false otherwise
  */
 	protected function _isPathUsable($path) {
 		return is_dir($path) && is_writable($path);

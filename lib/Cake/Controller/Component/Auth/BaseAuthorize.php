@@ -78,7 +78,7 @@ abstract class BaseAuthorize {
  *
  * @param array $user Active user data
  * @param CakeRequest $request Request instance.
- * @return bool
+ * @return boolean
  */
 	abstract public function authorize($user, CakeRequest $request);
 

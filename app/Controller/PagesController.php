@@ -100,10 +100,6 @@ class PagesController extends AppController {
 
 	public function basket($id = null, $item_id = null) {
 		$basket = $this->Session->read('basket');
-		$items = $this->Item->find('all', array(
-				'fields' => array('Item.id', 'Image.medium'),
-			));
-		$items = $this->Item->find('list', array('Item.id', 'Image.small'));
 
 		$items_data = $this->Item->basket_item_data($basket);
 

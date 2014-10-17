@@ -43,7 +43,7 @@ class Security {
  * Get allowed minutes of inactivity based on security level.
  *
  * @deprecated Exists for backwards compatibility only, not used by the core
- * @return int Allowed inactivity in minutes
+ * @return integer Allowed inactivity in minutes
  */
 	public static function inactiveMins() {
 		switch (Configure::read('Security.level')) {
@@ -70,7 +70,7 @@ class Security {
  * Validate authorization hash.
  *
  * @param string $authKey Authorization hash
- * @return bool Success
+ * @return boolean Success
  */
 	public static function validateAuthKey($authKey) {
 		return true;
@@ -151,7 +151,7 @@ class Security {
 /**
  * Sets the cost for they blowfish hash method.
  *
- * @param int $cost Valid values are 4-31
+ * @param integer $cost Valid values are 4-31
  * @return void
  */
 	public static function setCost($cost) {
@@ -252,7 +252,7 @@ class Security {
  * The salt length should not exceed 27. The salt will be composed of
  * [./0-9A-Za-z]{$length}.
  *
- * @param int $length The length of the returned salt
+ * @param integer $length The length of the returned salt
  * @return string The generated salt
  */
 	protected static function _salt($length = 22) {

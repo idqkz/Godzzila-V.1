@@ -21,7 +21,7 @@ class DbAclSchema extends CakeSchema {
  * Before event.
  *
  * @param array $event The event data.
- * @return bool success
+ * @return boolean success
  */
 	public function before($event = array()) {
 		return true;

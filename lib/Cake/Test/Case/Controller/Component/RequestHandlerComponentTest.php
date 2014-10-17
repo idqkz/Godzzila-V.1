@@ -33,7 +33,7 @@ class RequestHandlerTestController extends Controller {
 /**
  * uses property
  *
- * @var mixed
+ * @var mixed null
  */
 	public $uses = null;
 
@@ -600,9 +600,6 @@ class RequestHandlerComponentTest extends CakeTestCase {
 
 		$result = $this->RequestHandler->requestedWith(array('rss', 'atom'));
 		$this->assertFalse($result);
-
-		$_SERVER['REQUEST_METHOD'] = 'DELETE';
-		$this->assertEquals('json', $this->RequestHandler->requestedWith());
 
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 		unset($_SERVER['CONTENT_TYPE']);

@@ -32,7 +32,7 @@ class Inflector {
  */
 	protected static $_plural = array(
 		'rules' => array(
-			'/(s)tatus$/i' => '\1tatuses',
+			'/(s)tatus$/i' => '\1\2tatuses',
 			'/(quiz)$/i' => '\1zes',
 			'/^(ox)$/i' => '\1\2en',
 			'/([m|l])ouse$/i' => '\1ice',
@@ -56,17 +56,7 @@ class Inflector {
 			'/$/' => 's',
 		),
 		'uninflected' => array(
-			'.*[nrlm]ese',
-			'.*data',
-			'.*deer',
-			'.*fish',
-			'.*measles',
-			'.*ois',
-			'.*pox',
-			'.*sheep',
-			'people',
-			'feedback',
-			'stadia'
+			'.*[nrlm]ese', '.*deer', '.*fish', '.*measles', '.*ois', '.*pox', '.*sheep', 'people', 'feedback'
 		),
 		'irregular' => array(
 			'atlas' => 'atlases',
@@ -153,7 +143,6 @@ class Inflector {
 			'/s$/i' => ''
 		),
 		'uninflected' => array(
-			'.*data',
 			'.*[nrlm]ese', '.*deer', '.*fish', '.*measles', '.*ois', '.*pox', '.*sheep', '.*ss', 'feedback'
 		),
 		'irregular' => array(
@@ -173,9 +162,9 @@ class Inflector {
 		'Foochowese', 'gallows', 'Genevese', 'Genoese', 'Gilbertese', 'graffiti',
 		'headquarters', 'herpes', 'hijinks', 'Hottentotese', 'information', 'innings',
 		'jackanapes', 'Kiplingese', 'Kongoese', 'Lucchese', 'mackerel', 'Maltese', '.*?media',
-		'mews', 'moose', 'mumps', 'Nankingese', 'news', 'nexus', 'Niasese',
+		'metadata', 'mews', 'moose', 'mumps', 'Nankingese', 'news', 'nexus', 'Niasese',
 		'Pekingese', 'Piedmontese', 'pincers', 'Pistoiese', 'pliers', 'Portuguese',
-		'proceedings', 'rabies', 'research', 'rice', 'rhinoceros', 'salmon', 'Sarawakese', 'scissors',
+		'proceedings', 'rabies', 'rice', 'rhinoceros', 'salmon', 'Sarawakese', 'scissors',
 		'sea[- ]bass', 'series', 'Shavese', 'shears', 'siemens', 'species', 'swine', 'testes',
 		'trousers', 'trout', 'tuna', 'Vermontese', 'Wenchowese', 'whiting', 'wildebeest',
 		'Yengeese'
@@ -316,7 +305,7 @@ class Inflector {
  *
  * @param string $type The type of inflection, either 'plural', 'singular' or 'transliteration'
  * @param array $rules Array of rules to be added.
- * @param bool $reset If true, will unset default inflections for all
+ * @param boolean $reset If true, will unset default inflections for all
  *        new rules that are being defined in $rules.
  * @return void
  */
