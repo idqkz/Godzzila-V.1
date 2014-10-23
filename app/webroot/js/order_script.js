@@ -2,7 +2,7 @@ var shop_functions = {
 	init: function() {
 		//	добавление в корзину
 		$('.shop-menu .add-to-basket-button').click(function() {
-			shop_functions.basket_update($(this));
+			shop_functions.add_to_basket($(this));
 			return false;
 		});
 
@@ -61,7 +61,7 @@ var shop_functions = {
 
 		console.log('init');
 	},
-	basket_update: function(clicked_obj) {
+	add_to_basket: function(clicked_obj) {
 		item_data = {item_id: clicked_obj.attr('data-item-id')};
 		item_data.quantity = clicked_obj.attr('data-quantity');
 		clicked_item_image = clicked_obj.parents('.item').find('.image img');
@@ -70,15 +70,28 @@ var shop_functions = {
 			url: clicked_obj.attr('href'),
 			data: item_data,
 			complete: function(respnonse_data) {
-				// if (respnonse_data['responseText']) {
+				if (respnonse_data['responseText']) {
 					//	find position of the image
-					// position = site_functions.find_position(clicked_item_image[0]);
+					position = site_functions.find_position(clicked_item_image[0]);
 					//	create a new object 
-					// clicked_item_image.clone().addClass('animation-img').css({top: position.top, left: position.left});
-					
-					//	animate
+					clicked_item_image.clone().addClass('animation-img').css({top: position.top, left: position.left}).appendTo('body');
+					//	destination position
+					destination = site_functions.find_position($('.main-menu .basket')[0]);
 
-				// };
+					console.log(destination.left + '-' + ($('.animation-img').outerWidth())/2 + '+' + $('.main-menu .basket').outerWidth()/2);
+					var add_to_basket_animation = new TimelineLite();
+					add_to_basket_animation
+					.pause()
+					.to($('.animation-img'), 1, {left: destination.left + $('.main-menu .basket').outerWidth()/2})
+					.to($('.animation-img'), .75, {top: window.scrollY + 50}, '-=.7')
+					.to($('.animation-img'), .5, {width: 0, height: 0}, '-=0.7')
+					.to($('.animation-img'), .25, {opacity: 0}, '-=0.2')
+					.play()
+					.eventCallback('onComplete', function() {
+						$('.animation-img').remove();
+					})
+					;
+				};
 			}
 		})
 	}

@@ -163,6 +163,8 @@ body {
 .specials.slider {
 	position: relative;
 	font-size: 0px;
+	float: left;
+	margin: 40px 0;
 }
 
 .specials.slider .nav {

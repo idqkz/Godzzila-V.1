@@ -22,18 +22,18 @@
 			);
 		
 		public function beforeSave($options = array()){
+
 			if(isset($this->data['Order']['status'])){
-				if(isset($this->data['info']['time'])){
-					$time = $this->data['info']['time'];
-				} else{
-					$time = null;
-				}
+
+				(isset($this->data['info']['time']) ? $time = $this->data['info']['time']: $time = null);
 				$this->check_status_change(
 					$this->data['Order']['id'], 
 					$this->data['Order']['status'], 
 					$time
 				);
+
 			}
+
 		}
 
 		public function afterSave($created, $options = array()) {
@@ -93,18 +93,18 @@
 				$phone = $order_info['Order']['phone'];
 
 				$message_text = 'Vash zakaz prinyat v obrabotku';
-				debug($message_text);
-				die();
+				// debug($message_text);
+				// die();
 				// $User_model->send_sms($user_id, $message_text, $phone);
 			}
 
-			if (($old_status_order == 2) && ($status_order == 3)){
+			if (($status_order == 3)){
 				// Отправка сообщения о том что заказ передан курьеру.
 				$User_model = ClassRegistry::init('User');
 				$user_id = $order_info['Order']['phone'];
 				$phone = $order_info['Order']['phone'];
 
-				$message_text = 'Vash zakaz otpravlen na dostavku i budet dostavlen v techenii '.$time.' min';
+				$message_text = 'Ваш заказ передан в доставку, ожидайте в течении ' . $time . ' минут';
 				debug($message_text);
 				die();
 				// $User_model->send_sms($user_id, $message_text, $phone);

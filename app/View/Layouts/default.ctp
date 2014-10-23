@@ -10,7 +10,7 @@
 
 		echo $this->Html->css(array('init', 'theme'));
 
-		echo $this->Html->script(array('jquery-2.0.3.min', 'TweenLite.min', 'CSSPlugin.min', 'site_functions'));
+		echo $this->Html->script(array('jquery-2.0.3.min', 'TweenLite.min', 'TimelineLite.min', 'CSSPlugin.min', 'site_functions'));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -22,7 +22,7 @@
 		<div class='container'>
 			<div class='call-1'>закажи годзиллу! <a href="tel:87172-445177">8&nbsp;(7172)&nbsp;445-177</a></div>
 		</div>
-		<div class='main-menu'>
+		<div class='main-menu fixed'>
 			<div class='container'>
 			<?php
 				echo $this->Html->link(

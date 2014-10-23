@@ -1,3 +1,13 @@
+<div class='info-block'>
+	<div class='container'>
+		<div class='dostavka'>
+			<p>Быстрая доставка по городу 500 тенге<br>Заказ свыше 3&nbsp;500 тенге — доставка бесплатная!</p>
+		</div>
+	</div>
+</div>
+<?php 
+	echo $this->element('block-items_out');
+?>
 <div class='slider specials'>
 	<div class='nav prev'></div>
 	<div class='nav next'></div>
@@ -17,13 +27,3 @@
 		?>
 	</div>
 </div>
-<div class='info-block'>
-	<div class='container'>
-		<div class='dostavka'>
-			<p>Быстрая доставка по городу 500 тенге<br>Заказ свыше 3&nbsp;500 тенге — доставка бесплатная!</p>
-		</div>
-	</div>
-</div>
-<?php 
-	echo $this->element('block-items_out');
-?>

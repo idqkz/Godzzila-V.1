@@ -12,7 +12,11 @@
 				.	$this->Form->input('Order.status', array('label' => 'Статус', 'options' => $options_status))
 				.	$this->Form->input('info.time', array('label' => 'Время доставки', 'options' => $options_time))
 				.	$this->Form->input('Order.name', array('label' => 'Имя'))
+				.	$this->Form->input('Order.phone', array('label' => 'Телефон', 'disabled' => 'disabled'))
 				.	$this->Form->input('Order.address', array('label' => 'Адресс'))
+				// .	$this->Html->link('показать на карте', 
+						// array('controller' => 'admin', 'action' => 'show_order_on_map', $this->data['Order']['id']), 
+						// array('class' => 'show-order-on-map'))
 				.	$this->Html->div('time', $this->data['Order']['created'])
 				.	$this->Html->div('total', $this->data['Order']['total'])
 				.	$this->Form->submit('Сохранить', array('class' => 'btn btn-success'))
@@ -70,4 +74,15 @@
 
 		?>
 	</div>
+	<script type="text/javascript">
+		$('.show-order-on-map').click(function() {
+			$.ajax({
+				url: $(this).attr('href'),
+				complete: function(response_data) {
+					$('body').append(response_data['responseText']);
+				}
+			})
+			return false;
+		})
+	</script>
 </div>

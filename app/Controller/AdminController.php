@@ -123,6 +123,7 @@ class AdminController extends AppController {
 		if (!empty($this->data)){
 			$this->Item->save($this->data);
 			unset($this->request->data['Item']);
+			$this->Session->setFlash('Изменения сохранены!');
 		}
 
 		if ($id != null) {
@@ -142,6 +143,7 @@ class AdminController extends AppController {
 	public function catagory_menu($id = null) {
 		if (!empty($this->data)){
 			$this->CategoryItem->Save($this->data);
+			$this->Session->setFlash('Изменения сохранены!');
 		}
 
 		if ($id != null){
@@ -153,12 +155,13 @@ class AdminController extends AppController {
 
 	public function orders() {
 		//	get a list of orders
-		$this->Order->recursice = 0;
+		$this->Order->recursive = 0;
 		$orders = $this->Order->find('all', array(
 			'conditions' => array(),
 			'order' => 'created ASC'
 		));
-		$this->set(compact('orders'));
+		$order_status = $this->Order->status_order;
+		$this->set(compact('orders', 'order_status'));
 	}
 
 	public function order_details($id = null) {
@@ -379,6 +382,7 @@ class AdminController extends AppController {
 					$this->User->delete($user_id);
 				}
 			}
+			$this->Session->setFlash('Удаление прошло успешно!');
 		}
 		$this->redirect(array('controller' => 'admin', 'action' => 'users'));
 	}
@@ -389,6 +393,7 @@ class AdminController extends AppController {
 			$order_id = $this->ItemsOrder->findById($id);
 			$order_id = $order_id['ItemsOrder']['order_id'];
 			$this->ItemsOrder->delete($id);
+			$this->Session->setFlash('Удаление прошло успешно!');
 		}
 		$this->redirect(array('controller' => 'admin', 'action' => 'orders_all',$order_id));
 	}
@@ -396,15 +401,15 @@ class AdminController extends AppController {
 	public function image_delete($id_image = null, $id_menu = null, $action = null) {
 		if($id_image !=null){
 			$this->Image->delete($id_image);
+			$this->Session->setFlash('Удаление прошло успешно!');
 		}
 		$this->redirect(array('controller' => 'admin', 'action' => $action, $id_menu));
 	}
 
 	public function delete_menu_item($id = null) {
 		if($id !=null){
-			// debug($this->Item->findById($id));
-			// die();
 			$this->Item->delete($id, true);
+			$this->Session->setFlash('Удаление прошло успешно!');
 			$this->redirect(array('controller' => 'admin', 'action' => 'menu_item_all'));
 		}
 	}
@@ -426,6 +431,15 @@ class AdminController extends AppController {
 			$this->Order->update_total_order($id_order);
 			$this->redirect(array('controller' => 'admin', 'action' => 'order_details', $id_order));
 		}
+	}
+
+	public function show_order_on_map($id) {
+		$order_data = $this->Order->find('first', array(
+			'conditions' => array('Order.id' => $id),
+			'fields' => array('location')
+		));
+		$this->set(compact('order_data'));
+		$this->layout = 'ajax';
 	}
 // 
 

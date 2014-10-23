@@ -8,7 +8,7 @@ var site_functions = {
 			site_functions.fade_in(fade_in[i], site_functions.find_position(fade_in[i]).top);
 		};
 
-		site_functions.sticky('.main-menu', 'fixed', '.main-menu');
+		// site_functions.sticky('.main-menu', 'fixed', '.main-menu');
 
 	},
 	sticky: function(item_to_watch, class_to_add, sticky_top_class) {

@@ -597,3 +597,11 @@ padding: 3px;
 	border-top: solid 1px rgba(0, 0, 0, .3); 
 	margin-top: 5px;
 }
+
+.admin #map {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, .95);
+	padding: 20px;
+	position: fixed;
+}
